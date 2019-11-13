@@ -1,0 +1,25 @@
+<template>
+  <div class="ui secondary pointing menu">
+  <a href="/" class="active item">
+    Image Storage
+  </a>
+  <a class="item">
+    Messages
+  </a>
+  <a class="item">
+    Friends
+  </a>
+  <div class="right menu">
+    <a class="ui item">
+      Logout
+    </a>
+  </div>
+</div>
+
+</template>
+
+<script>
+export default {
+
+}
+</script>
