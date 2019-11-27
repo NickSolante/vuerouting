@@ -1,5 +1,8 @@
+import api from '../../api/imgur'
+import qs from 'qs'
+
 const state = {
-  token: null
+  token: window.localStorage.getItem('imgur_token')
 }
 
 const getters = {
@@ -7,6 +10,18 @@ const getters = {
 }
 
 const actions = {
+  login: () => {
+    api.login()
+  },
+
+  finalizeLogin({ commit }, hash) {
+    const qString = qs.parse(hash.replace('#', ''))
+
+    commit('setToken', qString.access_token)
+
+    window.localStorage.setItem('imgur_token', qString.access_token)
+  },
+
   logout: ({ commit }) => {
     commit('setToken', null)
   }
@@ -17,6 +32,10 @@ const mutations = {
     state.token = token
   }
 }
-//api.imgur.com/oauth2/authorize?
-https: client_id = YOUR_CLIENT_ID & response_type = REQUESTED_RESPONSE_TYPE &
-state = APPLICATION_STATE
+
+export default {
+  state,
+  actions,
+  mutations,
+  getters
+}
